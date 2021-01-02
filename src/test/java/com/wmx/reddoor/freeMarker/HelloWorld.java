@@ -91,6 +91,9 @@ public class HelloWorld {
         model.put("testNull", null);
         model.put("testBlank", "");
 
+        Person personA1 = new Person("2011", "wangMX", 1, new Date(), 9500.11F);
+        model.put("personA1", personA1);
+
         //7.process(Object dataModel, Writer out)：使用提供的数据模型执行模板，将生成的文件写入到 out 输出流
         FileWriter writer = new FileWriter(file);
         template.process(model, writer);

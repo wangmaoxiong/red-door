@@ -11,7 +11,7 @@
 </head>
 <body>
 <header style="margin-left: 10%">
-    <h3 class="h3">FreeMarker 语法快速入门</h3>
+    <h3 class="h3">FreeMarker 语法快速入门 &nbsp;&nbsp;<span style="font-size: 12px">当前时间：${.now}</span></h3>
 
     <p>基本类型：userName= ${userName}</p>
 
@@ -51,7 +51,15 @@
             </#if>
             <th scope="row" pid="${p.pid}">${p_index+1}</th>
             <td>${p.name}</td>
-            <td>${p.sex}</td>
+            <td>
+                <#if p.sex==1>
+                    男
+                <#elseif p.sex == 0>
+                    女
+                <#else >
+                    -
+                </#if>
+            </td>
             <td>${p.birthday?string("yyyy/MM/dd HH:mm:ss")}</td>
             <td>${p.salary?c}</td>
             </tr>
@@ -61,7 +69,7 @@
     </p>
 
     <p>null 判断：testNull= ${testNull!"值为null"}、testNull= ${testNull!""}、testNull=${testNull!}</p>
-    <p>空值 判断：testBlank= ${testBlank!"值为null"}、testBlank= ${testBlank!""}、testBlank=${testBlank!}</p>
+    <p>空值 判断：testBlank= ${testBlank!"值为空"}、testBlank= ${testBlank!""}、testBlank=${testBlank!}</p>
 
     <#if testNull??>
         <p class="text-left">testNull=${testNull}</p>
@@ -74,6 +82,21 @@
     <#else >
         <p class="text-left">testNull 值为null，或者key不存在</p>
     </#if>
+
+    <p class="text-left">首字母自动大写：${personA1.name?cap_first}</p>
+    <p class="text-left">首字母自动小写：${personA1.name?uncap_first}</p>
+    <p class="text-left">字母自动全小写：${personA1.name?lower_case}，字符串替换：${personA1.name?replace("MX","猫熊")}</p>
+    <p class="text-left">字母自动全大写：${personA1.name?upper_case}，内容长度：${personA1.name?length}</p>
+
+    <button type="button" class="btn btn-primary btn-lg btn-block">
+        字符串转数字：${personA1.pid?eval + 100}、
+        字符串转数字：${personA1.pid?number + 200}
+    </button>
+    <button type="button" class="btn btn-primary btn-lg btn-block">
+        数字转字符串：${personA1.salary?c}、
+        数字转货币：${personA1.salary?string("currency")}、
+        数字转百分比：${personA1.salary?string("percent")}
+    </button>
 
 </header>
 <footer>
