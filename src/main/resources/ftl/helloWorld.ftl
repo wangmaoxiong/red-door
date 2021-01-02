@@ -10,10 +10,56 @@
     <title>FreeMarker 语法快速入门</title>
 </head>
 <body>
-<header>
-    <h3 style="margin-left: 40%" class="h3">FreeMarker 语法快速入门
-        <a href="#" style="font-size: 15px" class="badge badge-primary">${userName}</a>
-    </h3>
+<header style="margin-left: 10%">
+    <h3 class="h3">FreeMarker 语法快速入门</h3>
+
+    <p>基本类型：userName= ${userName}</p>
+
+    <p>Map类型：id=${map.id?c}、name=${map.name}、
+        <span class="badge badge-primary">${map.person.pid}</span>
+        <span class="badge badge-primary">${map.person.name}</span>
+        <span class="badge badge-primary">${map.person.sex}</span>
+        <span class="badge badge-primary">${map.person.birthday?datetime}</span>
+        <span class="badge badge-primary">${map.person.salary?c}</span>
+    </p>
+
+    <p>POJO类型：pid=${person.pid}、name=${person.name}、sex=${person.sex}、birthday=${person.birthday?datetime}
+        、salary=${person.salary?c}</p>
+
+    <p>List类型(元素为基本类型)：
+        <#list basicList as b>
+            <span class="badge badge-primary">${b}</span>
+        </#list>
+    </p>
+    <p>List类型(元素为对象类型)：
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">序号</th>
+            <th scope="col">姓名</th>
+            <th scope="col">性别</th>
+            <th scope="col">出生日期</th>
+            <th scope="col">薪资</th>
+        </tr>
+        </thead>
+        <tbody>
+        <#list personList as p>
+            <#if p_index%2==0>
+                <tr style="background-color: gray">
+            <#else>
+                <tr>
+            </#if>
+            <th scope="row" pid="${p.pid}">${p_index+1}</th>
+            <td>${p.name}</td>
+            <td>${p.sex}</td>
+            <td>${p.birthday?string("yyyy/MM/dd HH:mm:ss")}</td>
+            <td>${p.salary?c}</td>
+            </tr>
+        </#list>
+        </tbody>
+    </table>
+    </p>
+
 </header>
 <footer>
 </footer>

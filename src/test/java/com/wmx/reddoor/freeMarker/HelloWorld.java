@@ -46,7 +46,7 @@ public class HelloWorld {
         //6.创建一个 FileWriter 文件输出流对象，指定生成的静态文件存放的路径及文件名.
         //暂时输出到桌面，存放文件的目录必须存在，否则 FileNotFoundException 异常
         File homeDirectory = FileSystemView.getFileSystemView().getHomeDirectory();
-        File file = new File(homeDirectory, "/freeMarker/helloWorld.html");
+        File file = new File(homeDirectory, "/freeMarker/helloWorld.ftl");
         if (!file.getParentFile().exists()) {
             file.getParentFile().mkdirs();
         }
