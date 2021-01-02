@@ -22,7 +22,7 @@ import java.util.*;
 public class HelloWorld {
 
     /**
-     * FreeMarker 入门示例
+     * FreeMarker 入门示例，根据模板文件 生成 Html 静态文件
      *
      * @throws Exception
      */
