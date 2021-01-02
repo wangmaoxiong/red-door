@@ -60,6 +60,21 @@
     </table>
     </p>
 
+    <p>null 判断：testNull= ${testNull!"值为null"}、testNull= ${testNull!""}、testNull=${testNull!}</p>
+    <p>空值 判断：testBlank= ${testBlank!"值为null"}、testBlank= ${testBlank!""}、testBlank=${testBlank!}</p>
+
+    <#if testNull??>
+        <p class="text-left">testNull=${testNull}</p>
+    <#else >
+        <p class="text-left">testNull 值为null，或者key不存在</p>
+    </#if>
+
+    <#if testNull?exists>
+        <p class="text-left">testNull=${testNull}</p>
+    <#else >
+        <p class="text-left">testNull 值为null，或者key不存在</p>
+    </#if>
+
 </header>
 <footer>
 </footer>
