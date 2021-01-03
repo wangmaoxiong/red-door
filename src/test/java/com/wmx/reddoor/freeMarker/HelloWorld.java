@@ -29,13 +29,20 @@ public class HelloWorld {
         // 指定当前兼容的版本号，官方不推荐使用 Configuration.getVersion()，2.3.30 版本时已经会报错提示，将来2.4.0时会直接抛异常
         Configuration configuration = new Configuration(Configuration.VERSION_2_3_30);
 
-        //2.设置模板文件所在的目录
-        configuration.setDirectoryForTemplateLoading(new File("E:/IDEA_Projects/red-door/src/main/resources/ftl"));
+        /**
+         * 2.设置模板文件所在的目录
+         * setDirectoryForTemplateLoading(File dir): 指定模板文件所在目录路径
+         * configuration.setDirectoryForTemplateLoading(new File("E:/IDEA_Projects/red-door/src/main/resources/ftl"));
+         * 推荐使用下面的方式：指定当前类路径下的某个包作为模板文件所在目录
+         * setClassLoaderForTemplateLoading(ClassLoader classLoader, String basePackagePath)
+         * setClassForTemplateLoading(Class resourceLoaderClass, String basePackagePath)
+         */
+        configuration.setClassLoaderForTemplateLoading(PurchaseContract.class.getClassLoader(), "ftl");
 
         //3.设置模板文件的默认字符集
         configuration.setDefaultEncoding("utf-8");
 
-        //4.加载模板文件(相对路径)，官方默认后缀名是 .ftl，实际上任意格式都可以，自定义都行
+        //4.加载模板文件(相对路径)，官方默认后缀名是 .ftl，实际上任意格式都可以，自定义都行。但是只有是 .ftl 时 IDEA 才会有语法提示
         Template template = configuration.getTemplate("helloWorld.ftl");
 
         //6.创建一个 FileWriter 文件输出流对象，指定生成的静态文件存放的路径及文件名.

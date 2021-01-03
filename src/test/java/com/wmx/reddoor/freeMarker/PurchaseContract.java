@@ -22,13 +22,20 @@ public class PurchaseContract {
 
     @Test
     public void purchaseContract() throws IOException, TemplateException {
+        //1.创建 freemarker 模板的 configuration 配置对象。
         Configuration configuration = new Configuration(Configuration.VERSION_2_3_30);
 
+        //2.设置模板文件所在的目录
         configuration.setClassLoaderForTemplateLoading(PurchaseContract.class.getClassLoader(), "ftl");
 
+        //3.设置模板文件的默认字符集
         configuration.setDefaultEncoding("utf-8");
+
+        //4.加载模板文件(相对路径)，官方默认后缀名是 .ftl，实际上任意格式都可以，自定义都行。但是只有是 .ftl 时 IDEA 才会有语法提示
         Template template = configuration.getTemplate("purchaseContract.ftl");
 
+        //6.创建一个 FileWriter 文件输出流对象，指定生成的静态文件存放的路径及文件名.
+        //暂时输出到桌面，存放文件的目录必须存在，否则 FileNotFoundException 异常
         File homeDirectory = FileSystemView.getFileSystemView().getHomeDirectory();
         //只能生成 .doc 文件，如果生成的是 .docx 文件，则 Office Word  打开时会提示文件错误而打不开
         File file = new File(homeDirectory, "/freeMarker/采购合同.doc");
@@ -36,6 +43,7 @@ public class PurchaseContract {
             file.getParentFile().mkdirs();
         }
 
+        //设置数据模型
         Map model = new HashMap<>();
         List<Map<String, Object>> productList = new ArrayList<>();
         this.setDataModel(productList);
@@ -48,8 +56,11 @@ public class PurchaseContract {
         model.put("totalContractAmountLower", "19615000");//合同总额小写
         model.put("productList", productList);//产品数据列表
 
+        //7.process(Object dataModel, Writer out)：使用提供的数据模型执行模板，将生成的文件写入到 out 输出流
         FileWriter writer = new FileWriter(file);
         template.process(model, writer);
+
+        //8.操作结束，关闭流
         writer.flush();
         writer.close();
         System.out.println("FreeMarker 生成文件：" + file.getAbsolutePath());
