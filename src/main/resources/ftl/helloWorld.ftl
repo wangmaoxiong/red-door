@@ -14,7 +14,7 @@
     <h3 class="h3">FreeMarker 语法快速入门 &nbsp;&nbsp;<span style="font-size: 12px">当前时间：${.now}</span></h3>
 
     <p>基本类型：userName= ${userName}</p>
-    <p>"数组类型："${array[0]}、${array[1]}、${array[2]}</p>
+    <p>数组类型：一共${array?size}个，${array[0]}、${array[1]}、${array[2]}</p>
     <p>Map类型：id=${map.id?c}、name=${map.name}、
         <span class="badge badge-primary">${map.person.pid}</span>
         <span class="badge badge-primary">${map.person.name}</span>
@@ -38,7 +38,7 @@
         <#list basicList as b>
             <span class="badge badge-primary">${b}</span>
         </#list>
-        --获取指定索引=1元素：${basicList[1]}
+        --获取指定索引=1元素：${basicList[1]},一共 ${basicList?size} 个元素。
     </p>
     <p>List类型(元素为对象类型)：
     <table class="table">
@@ -72,6 +72,7 @@
             </td>
             <td>${p.birthday?string("yyyy/MM/dd HH:mm:ss")}</td>
             <td>${p.salary?c}</td>
+        <#--两种方式都可以-->
         <#--<td><#if p.married>是<#else >否</#if></td>-->
             <td>${p.married?string("是","否")}</td>
             </tr>
@@ -126,6 +127,20 @@
     <p class="text-left">截取子字符串：${personA1.name?substring(4)}</p>
 
     <p class="text-left"><#if person.married>已婚</#if></p>
+
+    <hr/>
+    <#--自定义变量，值有：普通类型、对象类型、接收后台传递的值-->
+    <#assign toekn="8748378TT8Y66">
+    <#assign book={"id":"77878TTR55","name":"水浒传","price":89.88}>
+    <#assign myPerson=person>
+    <p class="text-left">自定义变量取值：${toekn}、${book.id}、${book.name}、${book.price}</p>
+    <p class="text-left">自定义变量取值：${myPerson.pid}、${myPerson.name}、${myPerson.birthday?datetime}、${myPerson.salary?c}</p>
+
+    <p class="text-left">
+        <#if book.price gte 89.88>价格大于60</#if>、
+        <#if book.price gte 89.88 && book.name == "水浒传">水浒传价格大于60</#if>
+    </p>
+
 
 </header>
 
