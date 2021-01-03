@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- * 根据 .xml 文件内容生成静态的 采购合同(.docx)
+ * 为 xml 格式的 Word 文件注入数据，然后生成静态的 doc 格式文件
  *
  * @author wangMaoXiong
  * @version 1.0
@@ -23,12 +23,15 @@ public class PurchaseContract {
     @Test
     public void purchaseContract() throws IOException, TemplateException {
         Configuration configuration = new Configuration(Configuration.VERSION_2_3_30);
-        configuration.setDirectoryForTemplateLoading(new File("E:/IDEA_Projects/red-door/src/main/resources/ftl"));
+
+        configuration.setClassLoaderForTemplateLoading(PurchaseContract.class.getClassLoader(), "ftl");
+
         configuration.setDefaultEncoding("utf-8");
-        Template template = configuration.getTemplate("purchaseContract2.ftl");
+        Template template = configuration.getTemplate("purchaseContract.ftl");
 
         File homeDirectory = FileSystemView.getFileSystemView().getHomeDirectory();
-        File file = new File(homeDirectory, "/freeMarker/purchaseContract2.doc");
+        //只能生成 .doc 文件，如果生成的是 .docx 文件，则 Office Word  打开时会提示文件错误而打不开
+        File file = new File(homeDirectory, "/freeMarker/采购合同.doc");
         if (!file.getParentFile().exists()) {
             file.getParentFile().mkdirs();
         }
