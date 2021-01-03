@@ -1166,6 +1166,87 @@
                                 </w:tc>
                             </w:tr>
                         </#list>
+
+                        <w:tr w:rsidR="001E7631" w:rsidRPr="006B3426" w:rsidTr="00BE0FB3">
+                            <w:trPr>
+                                <w:trHeight w:val="465"/>
+                            </w:trPr>
+                            <w:tc>
+                                <w:tcPr>
+                                    <w:tcW w:w="2759" w:type="dxa"/>
+                                    <w:gridSpan w:val="2"/>
+                                </w:tcPr>
+                                <w:p w:rsidR="001E7631" w:rsidRPr="006B3426" w:rsidRDefault="00A86491" w:rsidP="00A86491">
+                                    <w:pPr>
+                                        <w:spacing w:line="360" w:lineRule="auto"/>
+                                        <w:jc w:val="right"/>
+                                        <w:rPr>
+                                            <w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+                                            <w:sz w:val="24"/>
+                                        </w:rPr>
+                                    </w:pPr>
+                                    <w:r w:rsidRPr="006B3426">
+                                        <w:rPr>
+                                            <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+                                            <w:sz w:val="24"/>
+                                        </w:rPr>
+                                        <w:t>合同总额</w:t>
+                                    </w:r>
+                                    <w:r w:rsidR="001E7631" w:rsidRPr="006B3426">
+                                        <w:rPr>
+                                            <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+                                            <w:sz w:val="24"/>
+                                        </w:rPr>
+                                        <w:t xml:space="preserve"></w:t>
+                                    </w:r>
+                                </w:p>
+                            </w:tc>
+                            <w:tc>
+                                <w:tcPr>
+                                    <w:tcW w:w="7432" w:type="dxa"/>
+                                    <w:gridSpan w:val="7"/>
+                                    <w:vAlign w:val="center"/>
+                                </w:tcPr>
+                                <w:p w:rsidR="001E7631" w:rsidRPr="006B3426" w:rsidRDefault="002D4F91" w:rsidP="009F187E">
+                                    <w:pPr>
+                                        <w:spacing w:line="360" w:lineRule="auto"/>
+                                        <w:rPr>
+                                            <w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
+                                            <w:sz w:val="24"/>
+                                        </w:rPr>
+                                    </w:pPr>
+                                    <w:r w:rsidRPr="006B3426">
+                                        <w:rPr>
+                                            <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+                                            <w:sz w:val="24"/>
+                                        </w:rPr>
+                                        <w:t>大写：</w:t>
+                                    </w:r>
+                                    <w:r w:rsidR="001315E7">
+                                        <w:rPr>
+                                            <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+                                            <w:sz w:val="24"/>
+                                        </w:rPr>
+                                        <w:t>${totalContractAmountUpper}</w:t>
+                                    </w:r>
+                                    <w:r w:rsidRPr="006B3426">
+                                        <w:rPr>
+                                            <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+                                            <w:sz w:val="24"/>
+                                        </w:rPr>
+                                        <w:t xml:space="preserve"> 小写：</w:t>
+                                    </w:r>
+                                    <w:r w:rsidR="001315E7">
+                                        <w:rPr>
+                                            <w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+                                            <w:sz w:val="24"/>
+                                        </w:rPr>
+                                        <w:t>${totalContractAmountLower}</w:t>
+                                    </w:r>
+                                </w:p>
+                            </w:tc>
+                        </w:tr>
+
                     </w:tbl>
                     <w:p w:rsidR="001E7631" w:rsidRPr="006A5DBC" w:rsidRDefault="001E7631" w:rsidP="006A5DBC">
                         <w:pPr>
