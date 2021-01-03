@@ -15,16 +15,18 @@ public class Person {
     private Integer sex;
     private Date birthday;
     private Float salary;
+    private Boolean married;
 
     public Person() {
     }
 
-    public Person(String pid, String name, Integer sex, Date birthday, Float salary) {
+    public Person(String pid, String name, Integer sex, Date birthday, Float salary, Boolean married) {
         this.pid = pid;
         this.name = name;
         this.sex = sex;
         this.birthday = birthday;
         this.salary = salary;
+        this.married = married;
     }
 
     public String getPid() {
@@ -65,5 +67,13 @@ public class Person {
 
     public void setSalary(Float salary) {
         this.salary = salary;
+    }
+
+    public Boolean getMarried() {
+        return married;
+    }
+
+    public void setMarried(Boolean married) {
+        this.married = married;
     }
 }

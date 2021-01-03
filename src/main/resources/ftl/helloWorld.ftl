@@ -14,7 +14,7 @@
     <h3 class="h3">FreeMarker 语法快速入门 &nbsp;&nbsp;<span style="font-size: 12px">当前时间：${.now}</span></h3>
 
     <p>基本类型：userName= ${userName}</p>
-
+    <p>"数组类型："${array[0]}、${array[1]}、${array[2]}</p>
     <p>Map类型：id=${map.id?c}、name=${map.name}、
         <span class="badge badge-primary">${map.person.pid}</span>
         <span class="badge badge-primary">${map.person.name}</span>
@@ -24,12 +24,21 @@
     </p>
 
     <p>POJO类型：pid=${person.pid}、name=${person.name}、sex=${person.sex}、birthday=${person.birthday?datetime}
-        、salary=${person.salary?c}</p>
+        、salary=${person.salary?c}
+        <#if person.salary < 8000>
+            &nbsp;低产阶级
+        <#elseif person.salary < 8000>
+            &nbsp;中产阶级
+        <#else >
+            &nbsp;资本家
+        </#if>
+    </p>
 
     <p>List类型(元素为基本类型)：
         <#list basicList as b>
             <span class="badge badge-primary">${b}</span>
         </#list>
+        --获取指定索引=1元素：${basicList[1]}
     </p>
     <p>List类型(元素为对象类型)：
     <table class="table">
@@ -40,6 +49,7 @@
             <th scope="col">性别</th>
             <th scope="col">出生日期</th>
             <th scope="col">薪资</th>
+            <th scope="col">是否已婚</th>
         </tr>
         </thead>
         <tbody>
@@ -62,14 +72,26 @@
             </td>
             <td>${p.birthday?string("yyyy/MM/dd HH:mm:ss")}</td>
             <td>${p.salary?c}</td>
+        <#--<td><#if p.married>是<#else >否</#if></td>-->
+            <td>${p.married?string("是","否")}</td>
             </tr>
         </#list>
         </tbody>
     </table>
+    --获取索引等于2的元素：${personList[2].name}
     </p>
+
+    <#list personList as person>
+        <tr>
+            <td> 序号：${person_index+1}，</td>
+            <td> 名称：${person.name}，</td>
+            <td> 薪资：${person.salary?c}</td>
+        </tr>
+    </#list>
 
     <p>null 判断：testNull= ${testNull!"值为null"}、testNull= ${testNull!""}、testNull=${testNull!}</p>
     <p>空值 判断：testBlank= ${testBlank!"值为空"}、testBlank= ${testBlank!""}、testBlank=${testBlank!}</p>
+    <p><#if testBlank == "">testBlank 值为空！</#if></p>
 
     <#if testNull??>
         <p class="text-left">testNull=${testNull}</p>
@@ -98,9 +120,18 @@
         数字转百分比：${personA1.salary?string("percent")}
     </button>
 
+    <p class="text-left"><#if person.name == "张三">字符串值比较</#if> </p>
+    <p class="text-left"><#if person.name?contains("三")>是否包含子字符串</#if> </p>
+    <p class="text-left">获取字符串的索引位置：${person.name?index_of("三")}</p>
+    <p class="text-left">截取子字符串：${personA1.name?substring(4)}</p>
+
+    <p class="text-left"><#if person.married>已婚</#if></p>
+
 </header>
-<footer>
-</footer>
+
+<#--引入公共的底部模板-->
+<#include "./commFooter.ftl">
+
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"

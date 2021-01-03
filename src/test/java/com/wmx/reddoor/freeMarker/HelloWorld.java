@@ -2,14 +2,11 @@ package com.wmx.reddoor.freeMarker;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.*;
 
 /**
@@ -55,15 +52,19 @@ public class HelloWorld {
         //基本数据类型
         model.put("userName", "蚩尤后裔");
 
+        //数组类型
+        String[] array = {"大秦", "大汉", "大唐"};
+        model.put("array", array);
+
         //map 类型
         Map<String, Object> employeeMap = new HashMap<>();
         employeeMap.put("id", 9527);
         employeeMap.put("name", "华安");
-        employeeMap.put("person", new Person("1020", "张三风", 1, new Date(), 19500.10F));
+        employeeMap.put("person", new Person("1020", "张三风", 1, new Date(), 19500.10F, false));
         model.put("map", employeeMap);
 
         //POJO 类型
-        Person person = new Person("1000", "张三", 1, new Date(), 9500.00F);
+        Person person = new Person("1000", "张三", 1, new Date(), 9500.00F, true);
         model.put("person", person);
 
         //List 类型：元素为基本类型
@@ -78,8 +79,8 @@ public class HelloWorld {
          * FreeMarker 处理日期：${person.birthday?string("yyyy/MM/dd HH:mm:ss")} ：自定义日期格式，如 2021/01/02 13:04:31
          */
         List<Person> personList = new ArrayList<>();
-        Person person2 = new Person("1002", "李斯", 1, new Date(), 11500.00F);
-        Person person3 = new Person("1004", "裘千尺", 0, new Date(), 13500.45F);
+        Person person2 = new Person("1002", "李斯", 1, new Date(), 11500.00F, true);
+        Person person3 = new Person("1004", "裘千尺", 0, new Date(), 13500.45F, false);
         personList.add(person);
         personList.add(person2);
         personList.add(person3);
@@ -90,8 +91,7 @@ public class HelloWorld {
         // 而 FreeMarker 则不同，取值时 key 必须存在且不能为 null，否则生成静态文件直接报错，所以必须先判断。为空没有关系，可以取值，只是为空而已。
         model.put("testNull", null);
         model.put("testBlank", "");
-
-        Person personA1 = new Person("2011", "wangMX", 1, new Date(), 9500.11F);
+        Person personA1 = new Person("2011", "wangMX", 1, new Date(), 9500.11F, false);
         model.put("personA1", personA1);
 
         //7.process(Object dataModel, Writer out)：使用提供的数据模型执行模板，将生成的文件写入到 out 输出流
