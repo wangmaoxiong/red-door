@@ -17,5 +17,7 @@ public class RedDoorApplication {
         SpringApplication.run(RedDoorApplication.class, args);
     }
 
+    
+    
     //其它操作可以写在后面
 }
