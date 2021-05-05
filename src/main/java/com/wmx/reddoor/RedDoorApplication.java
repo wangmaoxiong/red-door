@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
 * 启动类
 * @author wangMaoXiong
-* 
 */
 @SpringBootApplication
 public class RedDoorApplication {
