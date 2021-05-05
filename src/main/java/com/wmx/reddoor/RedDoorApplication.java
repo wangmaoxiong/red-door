@@ -15,5 +15,5 @@ public class RedDoorApplication {
         SpringApplication.run(RedDoorApplication.class, args);
     }
 
-    //
+    //可以
 }
