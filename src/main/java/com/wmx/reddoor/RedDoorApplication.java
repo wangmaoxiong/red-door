@@ -5,14 +5,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
 * 启动类
-* 
-* @author wangMaoXiong
+ *
+ * @author wangMaoXiong
+ * @version 1.0
+ * @date 2021/1/3 15:54
 */
 @SpringBootApplication
 public class RedDoorApplication {
 
     //入口方法
-    //
     public static void main(String[] args) {
         SpringApplication.run(RedDoorApplication.class, args);
     }
