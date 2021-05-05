@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class RedDoorApplication {
 
+    //入口方法
     public static void main(String[] args) {
         SpringApplication.run(RedDoorApplication.class, args);
     }
