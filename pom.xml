@@ -19,9 +19,10 @@
     </properties>
 
     <dependencies>
+        <!-- Spring boot WebSocket 启动模块，内部依赖了spring-boot-starter-web 模块 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
         </dependency>
 
         <!-- FreeMarker 模板引擎-->
