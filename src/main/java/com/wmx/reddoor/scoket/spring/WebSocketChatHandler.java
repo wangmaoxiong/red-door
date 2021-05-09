@@ -11,7 +11,7 @@ import java.util.Set;
 /**
  * 1、@Component ：表示交由 Spring 容器管理，由它实例化，WebSocketConfig 中还需要注入它
  * 2、这个类作为 webSocket 的处理器，所有的消息交互都在这里进行
- * 3、WebSocketHandler : spring webSocket 处理器的根接口, 一个五个方法，除了实现此接口，还可以实现它的子接口，或继承它的实现类
+ * 3、WebSocketHandler : spring webSocket 处理器的根接口, 一共五个方法，除了实现此接口，还可以实现它的子接口，或继承它的实现类
  *
  * @author wangMaoXiong
  * @version 1.0
