@@ -29,7 +29,7 @@ public class WebSocketChatSockConfig implements WebSocketConfigurer {
     WebSocketChatHandler webSocketChatHandler;
 
     /**
-     * 1、用于注册后台webSocket处理器，注意可以注册多个哦
+     * 1、用于注册后台 webSocket 处理器，注意可以注册多个哦
      * 2、握手成功后，所有的连接，消息处理等主要操作全都要在webSocket处理器中完成
      *
      * @param webSocketHandlerRegistry ：提供配置{@link WebSocketHandler}请求映射的方法。
@@ -42,6 +42,7 @@ public class WebSocketChatSockConfig implements WebSocketConfigurer {
          * 二：h5 webSocket 客户端连接的路径如：ws://localhost:8080/websocket/spring/chat.action
          * 三："ws://" 是浏览器 webSocket 的固定写法，必须写死，后面依次是 ip(域名)、端口、应用名、下面的地址
          * 四：addInterceptors：为握手请求配置拦截器。
+         * 五：withSockJS：如果前端使用了 SockJS 等库，则必须启用 SockJS 回退选项。
          */
         webSocketHandlerRegistry
                 .addHandler(webSocketChatHandler, "/websocket/spring/chatSock.action")
