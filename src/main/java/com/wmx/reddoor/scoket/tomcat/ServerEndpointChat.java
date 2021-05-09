@@ -74,11 +74,15 @@ public class ServerEndpointChat {
         try {
             logger.info("接收到客户端信息，session id=" + session.getId() + ":" + textMessage);
             /**
-             * 原样回复文本消息
+             * 收到消息给所有客户端发送过去，排除自己
              * getBasicRemote：同步发送
              * session.getAsyncRemote().sendText(textMessage);异步发送
              * */
-            session.getBasicRemote().sendText("收到【" + textMessage + "】");
+            for (Session sessionLoop : sessionSet) {
+                if (!session.equals(sessionLoop)){
+                    sessionLoop.getBasicRemote().sendText(session.getId() + "：" + textMessage);
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
