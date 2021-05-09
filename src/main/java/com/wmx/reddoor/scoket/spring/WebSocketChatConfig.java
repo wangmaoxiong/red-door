@@ -9,7 +9,7 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 import javax.annotation.Resource;
 
 /**
- * Spring WebSocket 配置类
+ * Spring WebSocket 配置类 - 用于绑定 WebSocketHandler 处理器 与 HandshakeInterceptor 拦截器
  * 1、实现 WebSocketConfigurer 接口：这个接口中只有 registerWebSocketHandlers 一个方法
  * * @Component ：表示此类交由 Spring 容器管理，让它来进行IOC(即创建对象)
  * * @EnableWebSocket : 表示这个类支持 webSocket，这里就是 webSocket 后台服务端

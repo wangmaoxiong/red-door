@@ -15,7 +15,7 @@ import java.util.UUID;
  * 1）用于权限控制：比如可以控制没有登录的用户或者权限不足的用户无法连接进行操作
  * 2）用于标识用户：便于在 webSocket 处理器(WebSocketFacebookHandler)中向指定用户发送消息
  * 3）还可以进行其它的类似安全框架的安全监测，日志系统的记录日志等
- * 3、HandshakeInterceptor 接口中只有两个方法 beforeHandshake(握手前)、afterHandshake(握手后)
+ * 2、HandshakeInterceptor 接口中只有两个方法 beforeHandshake(握手前)、afterHandshake(握手后)
  *
  * @author wangMaoXiong
  * @version 1.0
