@@ -8,8 +8,7 @@ function webSocketBind() {
     if ("WebSocket" in window) {
         /**创建 web socket 实例
          * 如果连接失败，浏览器控制台报错，连接失败
-         * 前缀 ws:// 必须正确，yyServer 是应用名称，websocket/yy.action 是后台访问路径
-         * 192.168.1.20：websocket 服务器地址
+         * 前缀 ws:// 协议必须写死
          * */
         ws = new WebSocket("ws://127.0.0.1:8317/websocket/tomcat/chat.action");
 
