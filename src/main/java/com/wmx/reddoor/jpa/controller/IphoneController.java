@@ -22,12 +22,11 @@ public class IphoneController {
     @Resource
     private IphoneRepository iphoneRepository;
 
-
     /**
      * 新增数据
      * http://localhost:8317/iphone/save?name=华为P30&price=4488.00&publishTime=2018/08/15
      * http://localhost:8317/iphone/save?name=华为P31&price=4588.00&publishTime=2019/08/15
-     * http://localhost:8317/iphone/save?name=小米10&price=4288.00&publishTime=2020/08/15
+     * http://localhost:8317/iphone/save?name=小米11&price=4388.00&publishTime=2020/08/15
      *
      * @param iphone
      * @return 添加成功后重定向到查询所有
