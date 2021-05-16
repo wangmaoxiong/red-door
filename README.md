@@ -10,5 +10,8 @@
 
 4、SpringBoot 整合 Tomcat WebSocket 前端聊天页面地址：http://127.0.0.1:8317/html/tomcatChat.html
 
+5、Spring Boot 整合 Spring Framework WebSocket 前端聊天页面地址：http://127.0.0.1:8317/html/springChat.html
+
+6、Spring Boot 整合 Spring Framework WebSocket + SockJS 前端聊天页面地址：http://127.0.0.1:8317/html/springChatScok.html
 
 
