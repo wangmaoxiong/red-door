@@ -10,4 +10,13 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/wang?characterEncoding=UTF-8&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-
+  #JPA 配置，可以参考官网：https://docs.spring.io/spring-boot/docs/2.0.4.RELEASE/reference/htmlsingle/#common-application-properties
+  jpa:
+    #    hibernate:
+    #       ddl‐auto: update # 更新或者创建数据库表结构,省略时将不会自动生成数据库表
+    #       show‐sql: true # 控制台是否显示SQL
+    generate-ddl: true # 是否根据实体(@Entity)自动建表，默认为 false。
+    show-sql: true # 是否显示 sql 语句，开发调试时，建议开启，上线后关闭
+    #jpa 建表时默认使用 MyISAM 存储引擎，而 MyISAM 是不支持事务的，要想支持需要将表的存储引擎设为 InnoDB:
+    #指定 JPA 底层的 hibernate方言，使用 InnoDB 作为存储引擎
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
