@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,98 +22,108 @@ public class IphoneController {
     @Resource
     private IphoneRepository iphoneRepository;
 
-    /**
-     * 根据 id 查询
-     *
-     * @param id
-     * @return
-     */
-    @GetMapping("/seals/{id}")
-    public Iphone findIphoneById(@PathVariable("id") Integer id, HttpServletResponse response) {
-        System.out.println("com.lct.www.controllr.IphoneController.findIphoneById:::" + id);
-        /**
-         * 推荐使用 findById 方式，而不是 getOne方法
-         * isPresent 判断 Optional是否为空，即有没有值
-         */
-        Optional<Iphone> IphoneOptional = iphoneRepository.findById(id);
-        if (!IphoneOptional.isPresent()) {
-            return null;
-        } else {
-            System.out.println("Iphone2::" + IphoneOptional.get());
-            /** 获取Iphone值*/
-            return IphoneOptional.get();
-        }
-    }
 
     /**
-     * 查询所有
+     * 新增数据
+     * http://localhost:8317/iphone/save?name=华为P30&price=4488.00&publishTime=2018/08/15
+     * http://localhost:8317/iphone/save?name=华为P31&price=4588.00&publishTime=2019/08/15
+     * http://localhost:8317/iphone/save?name=小米10&price=4288.00&publishTime=2020/08/15
      *
-     * @return
-     */
-    @GetMapping("/seals")
-    public List<Iphone> findAllIphones() {
-        List<Iphone> IphoneList = iphoneRepository.findAll();
-        return IphoneList;
-    }
-
-    /**
-     * 添加 区域
-     * localhost:8080/seals/save?name=党建学习区&clients=1,2&createTime=2018/08/12
-     * localhost:8080/seals/save?name=一学一做区&clients=4,5,6&createTime=2018/08/15
-     *
-     * @param Iphone
+     * @param iphone
      * @return 添加成功后重定向到查询所有
      */
-    @GetMapping("seals/save")
-    public String saveIphone(Iphone Iphone) {
+    @GetMapping("iphone/save")
+    public String saveIphone(Iphone iphone) {
+        System.out.println("新增数据：" + iphone);
         /**
-         * save 方法：当实体的主键不存在时，则添加；实体的主键存在时，则更新
+         * 1、save 方法：当实体的主键不存在时，则添加；实体的主键存在时，则更新
+         * 2、如果是交由数据库自动设置主键，则 save 方法内部会自动设置主键的值
          */
-        iphoneRepository.save(Iphone);
-        return "redirect:/seals";
+        iphoneRepository.save(iphone);
+        return "新增成功：" + iphone;
     }
 
     /**
-     * 更新区域
-     * localhost:8080/seals/save?id=2&name=一学一做区2&clients=4,5,6&createTime=2018/08/15
+     * 更新数据
+     * http://localhost:8317/iphone/update?id=1&name=华为P30&price=2488.00&publishTime=2018/08/15
      *
-     * @param Iphone
+     * @param iphone
      * @return
      */
-    @GetMapping("/seals/update")
-    public String updateIphone(Iphone Iphone) {
-        /**
-         * save 方法：当实体的主键不存在时，则添加；实体的主键存在时，则更新
-         */
-        iphoneRepository.save(Iphone);
-        return "redirect:/seals";
+    @GetMapping("/iphone/update")
+    public String updateIphone(Iphone iphone) {
+        System.out.println("更新数据：" + iphone);
+        //save 方法：当实体的主键不存在时，则添加；实体的主键存在时，则更新
+        iphoneRepository.save(iphone);
+        return "更新成功：" + iphone;
     }
 
     /**
-     * 根据主键 id 删除区域
+     * 根据主键 id 删除数据
+     * http://localhost:8317/iphone/del/1
      *
      * @return
      */
-    @GetMapping("/seals/del/{id}")
+    @GetMapping("/iphone/del/{id}")
     public String deleteIphoneById(@PathVariable("id") Integer id) {
-        iphoneRepository.deleteById(id);
-        return "redirect:/seals";
+        System.out.println("删除数据：id=" + id);
+
+        //void deleteById(ID id)：如果主键 id 不存在，则删除报错，所以删除前必须进行判断
+        //boolean isPresent()：如果存在值，则返回 true，否则返回 false
+        Optional<Iphone> iphoneOptional = iphoneRepository.findById(id);
+        if (iphoneOptional.isPresent()) {
+            iphoneRepository.deleteById(id);
+        }
+        return "删除成功：id=" + id;
     }
 
 
     /**
      * 删除表中所有数据
+     * http://localhost:8317/iphone/delAll
      *
      * @return
      */
-    @GetMapping("seals/delAll")
+    @GetMapping("iphone/delAll")
     public String deleteAll() {
+        System.out.println("删除表中所有数据");
         iphoneRepository.deleteAll();
-        return "redirect:/seals";
+        return "删除表中所有数据成功！";
     }
 
     /**
-     * 另外还有分页查询、排序查询等，在此就不再一一测试
+     * 根据主键 id 查询
+     * http://localhost:8317/iphone/1
+     *
+     * @param id
+     * @return
      */
+    @GetMapping("/iphone/{id}")
+    public Iphone findIphoneById(@PathVariable("id") Integer id) {
+        Iphone iphone = null;
+
+        //boolean isPresent()：如果存在值，则返回 true，否则返回 false
+        //推荐使用 findById 方式，而不是 getOne方法，isPresent 判断 Optional 是否为空，即有没有值
+        Optional<Iphone> iphoneOptional = iphoneRepository.findById(id);
+        if (iphoneOptional.isPresent()) {
+            iphone = iphoneOptional.get();
+        }
+        System.out.println("根据主键 id 查询，id=" + id + "\n" + iphone);
+        return iphone;
+    }
+
+    /**
+     * 查询表中所有数据
+     * http://localhost:8317/iphone
+     *
+     * @return
+     */
+    @GetMapping("/iphone")
+    public List<Iphone> findAll() {
+        List<Iphone> IphoneList = iphoneRepository.findAll();
+        return IphoneList;
+    }
+
+
 }
 
