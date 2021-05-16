@@ -34,4 +34,9 @@ public class DataSourceTest {
         System.out.println("连接地址>>>>>" + connection.getMetaData().getURL());
         connection.close();
     }
+
+//    控制台输出：
+//    数据源>>>>>>class com.zaxxer.hikari.HikariDataSource
+//    连接>>>>>>>>>HikariProxyConnection@519751097 wrapping com.mysql.cj.jdbc.ConnectionImpl@11a3a45f
+//    连接地址>>>>>jdbc:mysql://127.0.0.1:3306/wang?characterEncoding=UTF-8&serverTimezone=UTC
 }
