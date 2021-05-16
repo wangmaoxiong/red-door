@@ -1,4 +1,4 @@
-package com.wmx.reddoor.entity;
+package com.wmx.reddoor.jpa.entity;
 
 import javax.persistence.*;
 import java.util.Date;
