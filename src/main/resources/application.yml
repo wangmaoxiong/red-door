@@ -2,10 +2,12 @@ server:
   port: 8317
 
 spring:
-  datasource:
+  datasource:  #数据源配置
     username: root
     password: root
     #高版本的 spring boot 搭配的 mysql 驱动版本通常也较高，如 mysql-connector-java:8.0.X
     #此时 url 的值要带时区 serverTimezone、driver-class-name 的值要带 cj
     url: jdbc:mysql://127.0.0.1:3306/wang?characterEncoding=UTF-8&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+
